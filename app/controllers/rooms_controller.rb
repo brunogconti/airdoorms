@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = policy_scope(Room)
-    #authorize não funcionou 
+    #authorize não funcionou
   end
 
   def show
@@ -25,6 +25,26 @@ class RoomsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @room = Room.find(params[:room])
+  end
+
+  def update
+    if @room.update(room_params)
+      redirect_to @room, notice: 'room was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @room.destroy
+    redirect_to rooms_url, notice: 'room was successfully destroyed.'
+  end
+
+  private
+
 
   def room_params
     params.require(:room).permit(:title, :description, :address, :room_type, :value)
