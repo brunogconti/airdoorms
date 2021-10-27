@@ -5,12 +5,12 @@ class RoomPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    create?
+  def create?
+    true
   end
 
-  def create?
-    is_owner?
+  def new?
+    create?
   end
 
   private
