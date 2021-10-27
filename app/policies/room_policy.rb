@@ -3,6 +3,15 @@ class RoomPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+
+    def index?
+      true
+    end
+    
+    def show?
+      true
+    end
+
   end
 
   def new?
