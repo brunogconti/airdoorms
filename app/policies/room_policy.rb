@@ -3,15 +3,14 @@ class RoomPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
-    def index?
-      true
-    end
-    
-    def show?
-      true
-    end
+  def index?
+    true
+  end
 
+  def show?
+    true
   end
 
   def create?
@@ -22,9 +21,13 @@ class RoomPolicy < ApplicationPolicy
     create?
   end
 
+  def destroy?
+    owner?
+  end
+
   private
 
-  def is_owner?
+  def owner?
     record.user == user
   end
 end

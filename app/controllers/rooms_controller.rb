@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = policy_scope(Room)
-    #authorize não funcionou 
+    #authorize não funcionou
   end
 
   def show
@@ -24,6 +24,12 @@ class RoomsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @room = Room.find(params[:id])
+    authorize @room
+    @room.destroy
   end
 
   def room_params
