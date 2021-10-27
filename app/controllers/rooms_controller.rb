@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @rooms = policy_scope(Room)
@@ -7,8 +7,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-    authorize @room
     @room = Room.find(params[:id])
+    authorize @room
   end
 
   def new
