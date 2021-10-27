@@ -1,14 +1,14 @@
 class RoomsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @rooms = policy_scope(Room)
-    #authorize não funcionou 
+    #authorize não funcionou
   end
 
   def show
-    authorize @room
     @room = Room.find(params[:id])
+    authorize @room
   end
 
   def new
