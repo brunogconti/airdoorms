@@ -12,13 +12,13 @@ class RoomsController < ApplicationController
   end
 
   def new
-    authorize @room
     @room = Room.new
+    authorize @room
   end
 
   def create
-    authorize @room
     @room = Room.new(room_params)
+    authorize @room
     if @room.save
       redirect_to room_path(@room)
     else
