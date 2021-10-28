@@ -8,6 +8,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @match = Match.new
+    @match = Match.new(room: @room_id)
     authorize @room
   end
 
