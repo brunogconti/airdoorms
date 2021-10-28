@@ -1,1 +1,72 @@
-<h1>Teste Repúblicas</h1>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>Rooms:</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <form class="form-inline my-2">
+      <input
+        class="form-control mr-sm-2"
+        name="keyword"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value="<%= params[:keyword] %>"
+      >
+      <button class="btn btn-outline-success my-2" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <% if @keyword %>
+        <p>You searched for <strong><%= @keyword %></strong>. We found <%= @rooms.count %> rooms out of our <%= @rooms.count %> on our website.</p>
+      <% else %>
+        <p>All <%= Room.count %> rooms.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <% @rooms.each do |room| %>
+        <div class="col-4 card ">
+          <img class="card-img-top" src="" alt="Room photo">
+          <div class="card-body">
+            <div>
+              <h5 class="card-title"><%= room.title %></h4>
+              <h6 class="card-subtitle mb-2 text-muted"><%= room.address %></h6>
+              <p class="card-text"><%= room.description %></p>
+              <i>R$</i> <%= room.value %>
+            </div>
+            <div>
+              <% if policy(room).show? %>
+                <%= link_to 'Mais detalhes', room_path(room) %>
+              <% end %>
+              <% if policy(room).edit? %>
+                <%= link_to 'Editar', edit_room_path(room), class: 'ml-3 text-warning' %>
+              <% end %>
+              <% if policy(room).destroy? %>
+                <%= link_to "Remover", room_path(room),
+                    method: :delete,
+                    data: { confirm: "Tem certeza?" },
+                    class: 'ml-3 text-danger'%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div
+      class="col-4 sticky-top vh-100"
+      id="map"
+      style="width: 100%; height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+</div>
