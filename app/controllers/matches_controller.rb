@@ -7,7 +7,7 @@ class MatchesController < ApplicationController
 
   def show
     authorize @match
-    @room = Match.find(params[:id])
+    @match = Match.find(params[:id])
   end
 
   def match_params
