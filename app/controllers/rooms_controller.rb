@@ -3,11 +3,11 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = policy_scope(Room)
-    #authorize não funcionou
   end
 
   def show
     @room = Room.find(params[:id])
+    @match = Match.new
     authorize @room
   end
 
@@ -18,6 +18,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
+    @room.user = current_user
     authorize @room
     if @room.save
       redirect_to room_path(@room)
@@ -28,12 +29,14 @@ class RoomsController < ApplicationController
 
   def edit
     @room = Room.find(params[:id])
+    authorize @room
   end
 
   def update
     @room = Room.find(params[:id])
+    authorize @room
     if @room.update(room_params)
-      redirect_to @room, notice: 'room was successfully updated.'
+      redirect_to room_path, notice: 'room was successfully updated.'
     else
       render :edit
     end
@@ -41,6 +44,7 @@ class RoomsController < ApplicationController
 
   def destroy
     @room = Room.find(params[:id])
+    authorize @room
     @room.destroy
     redirect_to rooms_url, notice: 'room was successfully destroyed.'
   end
