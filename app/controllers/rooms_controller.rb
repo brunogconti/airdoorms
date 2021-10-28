@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:keyword].present?
