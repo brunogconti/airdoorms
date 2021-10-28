@@ -12,6 +12,7 @@
 <br>
 <br>
 <br>
+<% if current_user != @room.user %>
 <div class='card'>
 <h2>Deseja se juntar a nossa república?</h2>
 <%= simple_form_for @match do |f| %>
@@ -22,3 +23,4 @@
 <% end %>
 <%#= link_to 'cancelar', delete_match(@match) %>
 </div>
+<% end %>
