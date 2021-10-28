@@ -27,10 +27,11 @@ class RoomsController < ApplicationController
   end
 
   def edit
-    @room = Room.find(params[:room])
+    @room = Room.find(params[:id])
   end
 
   def update
+    @room = Room.find(params[:id])
     if @room.update(room_params)
       redirect_to @room, notice: 'room was successfully updated.'
     else
