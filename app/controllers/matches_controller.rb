@@ -1,6 +1,8 @@
 class MatchesController < ApplicationController
   def index
     @matches = policy_scope(Match)
+    @title = "My reservations"
+		@reservations = current_user.reservations
   end
 
   def show

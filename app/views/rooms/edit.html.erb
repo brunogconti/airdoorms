@@ -1,0 +1,16 @@
+<h1>Altere o Anúncio da sua vaga </h1>
+
+
+<%= simple_form_for @room do |f| %>
+  <%= f.input :title , :label => "Título de seu anúncio" %>
+    <%= f.input :description , :label => "Descreva o ap e o tipo de pessoa que procura" %>
+      <%= f.input :address , :label => "Local da sua vaga" %>
+        <%= f.input :room_type, as: :select, collection: %w[shared exclusive], prompt: "Tipo de Vaga" ,
+          label: "Tipo de Vaga" %>
+          <%= f.input :value, :label => "Valor Mensal" %>
+            <%= f.submit :label => "Atualize", class: 'btn btn-primary'  %>
+              <% end %>
+
+<!-- <%= render 'form' , room: @room %> -->
+  <%= link_to 'Show' , @room %> |
+    <%= link_to 'Back' , rooms_path %> |
