@@ -39,12 +39,12 @@ class RoomsController < ApplicationController
   end
 
   def destroy
+    @room = Room.find(params[:id])
     @room.destroy
     redirect_to rooms_url, notice: 'room was successfully destroyed.'
   end
 
   private
-
 
   def room_params
     params.require(:room).permit(:title, :description, :address, :room_type, :value)
