@@ -1,1 +1,64 @@
-<h1>Teste Repúblicas</h1>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>Rooms:</h1>
+    </div>
+  </div>
+
+  <form class="form-inline my-2">
+    <input
+      class="form-control mr-sm-2"
+      name="keyword"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+      value="<%= params[:keyword] %>"
+    >
+    <button class="btn btn-outline-success my-2" type="submit">
+      Search
+    </button>
+  </form>
+
+  <div class="row">
+    <div class="col">
+      <% if @keyword %>
+        <p>You searched for <strong><%= @keyword %></strong>. We found <%= @rooms.count %> rooms out of our <%= @rooms.count %> on our website.</p>
+      <% else %>
+        <p>All <%= Room.count %> rooms.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @rooms.each do |room| %>
+      <div class="col-4">
+        <div>
+          <div>
+            <h4><%= room.title %></h4>
+          </div>
+          <div>
+          <p><%= room.address %></p>
+          </div>
+          <div>
+            <i class="mr-2">R$</i> <%= room.value %>
+          </div>
+        </div>
+        <div>
+          <% if policy(room).show? %>
+            <%= link_to 'Mais detalhes', room_path(room) %>
+          <% end %>
+          <% if policy(room).edit? %>
+            <%= link_to 'Editar', edit_room_path(room), class: 'ml-3 text-warning' %>
+          <% end %>
+          <% if policy(room).destroy? %>
+            <%= link_to "Remover", room_path(room),
+                method: :delete,
+                data: { confirm: "Tem certeza?" },
+                class: 'ml-3 text-danger'
+            %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
