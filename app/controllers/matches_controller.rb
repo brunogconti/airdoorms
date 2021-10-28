@@ -1,14 +1,31 @@
 class MatchesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
-
   def index
-    @maches = policy_scope(Match)
+    @matches = policy_scope(Match)
   end
 
   def show
+    @match = Match.find(params[:id])
     authorize @match
-    @room = Match.find(params[:id])
   end
+
+  def create
+    @match = Match.new(match_params)
+    @match.user = current_user
+    authorize @match
+    if @match.save
+      redirect_to room_path(@match)
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @match = Match.find(params[:id])
+    authorize @match
+    @match.destroy
+    redirect_to matches_url, notice: 'match was successfully destroyed.'
+  end
+
 
   def match_params
     params.require(:match).permit(:start_date, :end_date, :price, :room_id, :user_id)

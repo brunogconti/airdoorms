@@ -1,26 +1,14 @@
-class RoomPolicy < ApplicationPolicy
+class MatchPolicy < ApplicationPolicy
   def index?
-    true
+    owner?
   end
 
   def show?
-    true
+    owner?
   end
 
   def create?
     true
-  end
-
-  def new?
-    create?
-  end
-
-  def edit?
-    owner?
-  end
-
-  def update?
-    owner?
   end
 
   def destroy?
