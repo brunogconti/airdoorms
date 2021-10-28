@@ -31,32 +31,29 @@
 
   <div class="row">
     <% @rooms.each do |room| %>
-      <div class="col-4">
-        <div>
+      <div class="col-4 card ">
+        <img class="card-img-top" src="" alt="Room photo">
+        <div class="card-body">
           <div>
-            <h4><%= room.title %></h4>
+            <h5 class="card-title"><%= room.title %></h4>
+            <h6 class="card-subtitle mb-2 text-muted"><%= room.address %></h6>
+            <p class="card-text"><%= room.description %></p>
+            <i>R$</i> <%= room.value %>
           </div>
           <div>
-          <p><%= room.address %></p>
+            <% if policy(room).show? %>
+              <%= link_to 'Mais detalhes', room_path(room) %>
+            <% end %>
+            <% if policy(room).edit? %>
+              <%= link_to 'Editar', edit_room_path(room), class: 'ml-3 text-warning' %>
+            <% end %>
+            <% if policy(room).destroy? %>
+              <%= link_to "Remover", room_path(room),
+                  method: :delete,
+                  data: { confirm: "Tem certeza?" },
+                  class: 'ml-3 text-danger'%>
+            <% end %>
           </div>
-          <div>
-            <i class="mr-2">R$</i> <%= room.value %>
-          </div>
-        </div>
-        <div>
-          <% if policy(room).show? %>
-            <%= link_to 'Mais detalhes', room_path(room) %>
-          <% end %>
-          <% if policy(room).edit? %>
-            <%= link_to 'Editar', edit_room_path(room), class: 'ml-3 text-warning' %>
-          <% end %>
-          <% if policy(room).destroy? %>
-            <%= link_to "Remover", room_path(room),
-                method: :delete,
-                data: { confirm: "Tem certeza?" },
-                class: 'ml-3 text-danger'
-            %>
-          <% end %>
         </div>
       </div>
     <% end %>
