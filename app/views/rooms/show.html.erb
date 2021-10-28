@@ -1,5 +1,22 @@
 <div class='container'>
-  <h1><%= @room.title %></h1>
-  <h2><%= @room.description %></h2>
-  <h2><%= @room.value.round(2) %></h2>
+  <h1><strong><%= @room.title %></strong></h1>
+  <h3><%= @room.description %></h3>
+  <h3><%= @room.value.round(2) %></h3>
   <p><%= @room.address %></p>
+  <p><%= @room.room_type %></p>
+
+<%= link_to 'Edit', edit_room_url(@room) %>
+<%= link_to 'Back', rooms_path %>
+<%= link_to 'delete', delete_room_path %>
+<br>
+<br>
+<br>
+<div class='card'>
+<h2>Deseja se juntar a nossa república?</h2>
+<%= simple_form_for @match do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+<%#= link_to 'cancelar', delete_match(@match) %>
+</div>
