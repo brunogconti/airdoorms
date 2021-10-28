@@ -2,12 +2,18 @@ class RoomsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @rooms = policy_scope(Room)
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      @rooms = policy_scope(Room).where("title iLIKE ?", "%#{params[:keyword]}%")
+    else
+      @rooms = policy_scope(Room)
+    end
   end
 
   def show
     @room = Room.find(params[:id])
     @match = Match.new
+    @match = Match.new(room: @room_id)
     authorize @room
   end
 

@@ -13,11 +13,13 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     @match.user = current_user
-    authorize @match
+    @room = Room.find(params[:room_id])
+    @match.room = @room
     if @match.save
       redirect_to room_path(@match)
     else
-      render :new
+      # render 'rooms/show'
+      redirect_to rooms_url, notice: 'Tivemos problemas em concluir a requisição'
     end
   end
 
@@ -28,8 +30,11 @@ class MatchesController < ApplicationController
     redirect_to matches_url, notice: 'match was successfully destroyed.'
   end
 
-
   def match_params
     params.require(:match).permit(:start_date, :end_date, :price, :room_id, :user_id)
+  end
+
+  def set_room
+    @room = Room.find(params[:room_id])
   end
 end
