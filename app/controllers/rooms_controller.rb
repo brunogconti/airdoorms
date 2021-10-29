@@ -8,6 +8,12 @@ class RoomsController < ApplicationController
     else
       @rooms = policy_scope(Room)
     end
+    @markers = @rooms.geocoded.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude
+      }
+    end
   end
 
   def show
