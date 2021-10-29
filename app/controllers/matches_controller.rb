@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   def index
     @matches = policy_scope(Match)
     @title = "My reservations"
-		@reservations = current_user.reservations
+		# @reservations = current_user.reservations
   end
 
   def show
@@ -17,7 +17,7 @@ class MatchesController < ApplicationController
     #@match.room = @room
     authorize @match
     if @match.save
-      redirect_to rooms_path
+      redirect_to matches_path
     else
       # render 'rooms/show'
       redirect_to rooms_url, notice: 'Tivemos problemas em concluir a requisição'
