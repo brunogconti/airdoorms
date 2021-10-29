@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     if params[:keyword].present?
@@ -10,10 +10,10 @@ class RoomsController < ApplicationController
     end
     @markers = @rooms.geocoded.map do |room|
        {
-        lat: room.latitude,
-        lng: room.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { room: room }),
-        image_url: helpers.asset_url('https://icon-library.com/images/hotel-icon-map/hotel-icon-map-18.jpg')
+         lat: room.latitude,
+         lng: room.longitude,
+         info_window: render_to_string(partial: "info_window", locals: { room: room }),
+         image_url: helpers.asset_url('https://icon-library.com/images/hotel-icon-map/hotel-icon-map-18.jpg')
       }
     end
   end
