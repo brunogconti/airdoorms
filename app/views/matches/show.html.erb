@@ -1,0 +1,28 @@
+<div class="span5">
+	<% @room = Room.find(@match.room_id) %>
+  <b><%=@room.title  %></b><br>
+	<%#= render match %>
+</div>
+<br><br>
+<div>
+  <b>Preço:</b>
+  <%= @room.value  %><br>
+
+</div>
+<br><br>
+	<p>
+	  <b>Data de Início:</b>
+	  <%=h @match.start_date %>
+	</p>
+
+	<p>
+	  <b>Data de Saída:</b>
+	  <%=h @match.end_date %>
+	</p>
+
+  <% if @match.user_id == current_user.id or match.user_id == current_user.id %>
+	<% end %>
+</div>
+© 2021 GitHub, Inc.
+Terms
+Pri
