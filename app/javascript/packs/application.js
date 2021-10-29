@@ -36,3 +36,6 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initMapbox();
 });
+//
+//*= require mapbox-gl
+//= require_tree .
