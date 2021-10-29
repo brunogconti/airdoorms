@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:keyword].present?
@@ -7,6 +7,12 @@ class RoomsController < ApplicationController
       @rooms = policy_scope(Room).where("title iLIKE ?", "%#{params[:keyword]}%")
     else
       @rooms = policy_scope(Room)
+    end
+    @markers = @rooms.geocoded.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude
+      }
     end
   end
 
