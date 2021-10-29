@@ -62,17 +62,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'pundit'
-
 gem 'faker'
 gem 'nokogiri'
 gem 'uri'
 gem 'geocoder'
-
 gem 'mapbox-gl-rails'
-
-
-
-
 gem 'cloudinary', '~> 1.16.0'
 gem "font-awesome-rails"
-
