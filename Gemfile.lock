@@ -104,7 +104,6 @@ GEM
       railties (>= 3.2, < 7)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
-    geocoder (1.7.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -275,19 +274,10 @@ DEPENDENCIES
   faker
   font-awesome-rails
   font-awesome-sass
-  geocoder
   jbuilder (~> 2.7)
   listen (~> 3.2)
-<<<<<<< HEAD
-<<<<<<< HEAD
-  nokogiri
-=======
-  mapbox-gl-rails
->>>>>>> 6727e68ff6d9ac650f459429b1d7a2086c12bdb2
-=======
   mapbox-gl-rails
   nokogiri
->>>>>>> c6a9d9f1f3275cc33e019e3382755fc90592522a
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
