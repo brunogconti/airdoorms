@@ -62,7 +62,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'pundit'
+<<<<<<< HEAD
 gem 'faker'
 gem 'nokogiri'
 gem 'uri'
 gem 'geocoder'
+=======
+gem 'mapbox-gl-rails'
+>>>>>>> 6727e68ff6d9ac650f459429b1d7a2086c12bdb2

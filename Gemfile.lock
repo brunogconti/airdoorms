@@ -111,6 +111,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mapbox-gl-rails (2.3.1)
+      railties (>= 3.2)
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
@@ -251,7 +253,11 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.7)
   listen (~> 3.2)
+<<<<<<< HEAD
   nokogiri
+=======
+  mapbox-gl-rails
+>>>>>>> 6727e68ff6d9ac650f459429b1d7a2086c12bdb2
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
