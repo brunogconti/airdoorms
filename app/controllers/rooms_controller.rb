@@ -3,7 +3,8 @@ class RoomsController < ApplicationController
 
   def index
     if params[:keyword].present?
-      @rooms = policy_scope(Room).where("title ILIKE ?", "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+      @rooms = policy_scope(Room).where("title iLIKE ?", "%#{params[:keyword]}%")
     else
       @rooms = policy_scope(Room)
     end
@@ -12,7 +13,7 @@ class RoomsController < ApplicationController
         lat: room.latitude,
         lng: room.longitude,
         info_window: render_to_string(partial: "info_window", locals: { room: room }),
-        image_url: helpers.asset_url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fmap-pins-1-01-easylines%2F128%2Fyumminky-pin-87-512.png&f=1&nofb=1')
+        image_url: helpers.asset_url('https://cdn4.iconfinder.com/data/icons/map-pins-2/256/15-512.png')
       }
     end
   end
