@@ -6,21 +6,22 @@
 
   <p><%= @room.room_type %></p>
 
-<%= link_to 'Edit', edit_room_url(@room) %>
-<%= link_to 'Back', rooms_path %>
-<%= link_to 'delete' , room_path(@room), method: :delete , data: { confirm: 'Você tem certeza que quer deletar?' } %>
-<br>
-<br>
-<br>
-<% if current_user != @room.user %>
-<div class='card'>
-<h2>Deseja se juntar a nossa república?</h2>
-<%= simple_form_for @match do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit class: 'btn btn-primary' %>
-    <%= f.hidden_field :room_id, :value=> params[:id] %>
-<% end %>
-<%= link_to 'Minhas Solicitações', matches_path %>
+  <%= link_to 'Edit', edit_room_url(@room) %>
+  <%= link_to 'Back', rooms_path %>
+  <%= link_to 'delete' , room_path(@room), method: :delete , data: { confirm: 'Você tem certeza que quer deletar?' } %>
+  <br>
+  <br>
+  <br>
+  <% if current_user != @room.user %>
+    <div class='card'>
+      <h2>Deseja se juntar a nossa república?</h2>
+      <%= simple_form_for @match do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.submit class: 'btn btn-primary' %>
+        <%= f.hidden_field :room_id, :value=> params[:id] %>
+      <% end %>
+      <%= link_to 'Minhas Solicitações', matches_path %>
+    </div>
+  <% end %>
 </div>
-<% end %>

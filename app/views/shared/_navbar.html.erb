@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= image_tag "https://cdn2.iconfinder.com/data/icons/location-map-simplicity/512/hotel-256.png" %>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,15 +14,19 @@
         <li class="nav-item active">
           <%= link_to "See Rooms", rooms_path, class: "nav-link" %>
         </li>
+        <li class="nav-item active">
+          <%= link_to "My Reservations", matches_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
-          <%= link_to "Create a Room", new_room_path, class: "nav-link" %>
+          <%= link_to "Announce", new_room_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/joaobalta", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <%= current_user.name %>
+          <%= image_tag "https://cdn0.iconfinder.com/data/icons/education-239/64/student-people-profile-avatar-school-boy-512.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%# https://kitt.lewagon.com/placeholder/users/joaobalta %>
+          <%# <%= current_user.name %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Minhas Reservas", matches_path, class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
