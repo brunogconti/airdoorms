@@ -16,8 +16,8 @@
     <div class='card'>
       <h2>Deseja se juntar a nossa república?</h2>
       <%= simple_form_for @match do |f| %>
-        <%= f.input :start_date %>
-        <%= f.input :end_date %>
+        <%= f.input :start_date, as: :date, html5: true %>
+        <%= f.input :end_date, as: :date, html5: true %>
         <%= f.submit class: 'btn btn-primary' %>
         <%= f.hidden_field :room_id, :value=> params[:id] %>
       <% end %>
