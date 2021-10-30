@@ -67,12 +67,6 @@ gem 'faker'
 gem 'nokogiri'
 gem 'uri'
 gem 'geocoder'
-
 gem 'mapbox-gl-rails'
-
-
-
-
 gem 'cloudinary', '~> 1.16.0'
 gem "font-awesome-rails"
-

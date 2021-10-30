@@ -3,8 +3,12 @@ class RoomsController < ApplicationController
 
   def index
     if params[:keyword].present?
-      @keyword = params[:keyword]
-      @rooms = policy_scope(Room).where("title iLIKE ?", "%#{params[:keyword]}%")
+      sql_query = " \
+        rooms.title @@ :query \
+        OR rooms.description @@ :query \
+        OR rooms.address @@ :query \
+      "
+      @rooms = policy_scope(Room).where(sql_query, query: "%#{params[:keyword]}%")
     else
       @rooms = policy_scope(Room)
     end
