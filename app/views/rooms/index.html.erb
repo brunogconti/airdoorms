@@ -33,37 +33,41 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-8 col-sm-12 d-flex flex-wrap">
+    <div class="col-sm-12 col-lg-8  d-flex flex-wrap">
       <% @rooms.each do |room| %>
-        <div class="col-lg-6 col-sm-12 card h-50 gx-3">
-          <img class="card-img-top" src="https://media.istockphoto.com/vectors/double-bed-vector-icon-on-white-vector-id1217991261?k=6&m=1217991261&s=170667a&w=0&h=SyZhVF32SBJGnri7yma3Jy0hhsSU6lmGF2xuKfNi8V4=" alt="Room photo">
-          <div class="card-body">
-            <div>
-              <h5 class="card-title"><%= room.title %></h4>
-              <h6 class="card-subtitle mb-2 text-muted"><%= room.address %></h6>
-              <p class="card-text"><%= room.description %></p>
-              <i>R$</i> <%= room.value %>
+        <div class="col-12 col-lg-4">
+          <div class="room-card">
+            <div class="room-card-image" style="background-image: url('https://media.istockphoto.com/vectors/double-bed-vector-icon-on-white-vector-id1217991261?k=6&m=1217991261&s=170667a&w=0&h=SyZhVF32SBJGnri7yma3Jy0hhsSU6lmGF2xuKfNi8V4=')"></div>
+            <div class="room-card-content">
+              <div class="room-card-title">
+                <h4><%= room.title %></h4>
+                <p><%= room.address %></p>
+              </div>
+              <div class="flex-align ">
+                <span><%= room.room_type %></span>
+                R$<%= room.value %>
+              </div>
             </div>
-            <div>
+            <div class="room-card-actions">
               <% if policy(room).show? %>
-                <%= link_to 'Detalhes', room_path(room) %>
+                <%= link_to 'More', room_path(room) %>
               <% end %>
               <% if policy(room).edit? %>
-                <%= link_to 'Editar', edit_room_path(room), class: 'ml-3 text-warning' %>
+                <%= link_to 'Edit', edit_room_path(room), class: 'ml-3 text-warning' %>
               <% end %>
               <% if policy(room).destroy? %>
-                <%= link_to "Remover", room_path(room),
+                <%= link_to "Remove", room_path(room),
                     method: :delete,
-                    data: { confirm: "Tem certeza?" },
-                    class: 'ml-3 text-danger'%>
+                    data: { confirm: "Are you sure?" },
+                    class: 'ml-3 text-danger'
+                %>
               <% end %>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    <div
-      class="col-lg-4 sticky-top vh-100"
+    <div class="col-lg-4"
       id="map"
       style="width: 100%; height: 100vh;"
       data-markers="<%= @markers.to_json %>"
