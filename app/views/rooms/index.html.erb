@@ -31,7 +31,9 @@
       <% end %>
     </div>
   </div>
+</div>
 
+<div class="container-fluid container py-3 mt-4">
   <div class="row">
     <div class="col-sm-12 col-lg-8  d-flex flex-wrap">
       <% @rooms.each do |room| %>
@@ -73,6 +75,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
+  </div>
 </div>
 
 <%# d-none d-lg-block d-xl-none %>
