@@ -3,16 +3,16 @@
 </div>
 <br>
 <div class="container">
-<div class="list-group">
-  <% @matches.each do |match|%>
-  <div class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Requisição <%= match.id %></h5>
-      <small><%= match.created_at %></small>
+  <div class="list-group">
+    <% @matches.each do |match|%>
+    <div class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Requisição <%= match.id %></h5>
+        <small><%= match.created_at %></small>
+      </div>
+      <p class="mb-1"><%= match.user.name %> deseja entrar na república <%= match.room.title %> e quer ficar no período  de (<%= match.start_date %>) até (<%= match.end_date %>)!</p>
+      <small><%= link_to 'Detalhes', match_path(match) %></small>
     </div>
-    <p class="mb-1"><%= match.user.name %> deseja entrar na república <%= match.room.title %> e quer ficar no período  de (<%= match.start_date %>) até (<%= match.end_date %>)!</p>
-    <small><%= link_to 'Detalhes', match_path(match.id) %></small>
+    <% end %>
   </div>
-  <% end %>
-</div>
 </div>

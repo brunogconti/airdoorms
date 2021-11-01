@@ -3,17 +3,21 @@ class RoomsController < ApplicationController
 
   def index
     if params[:keyword].present?
-      @keyword = params[:keyword]
-      @rooms = policy_scope(Room).where("title iLIKE ?", "%#{params[:keyword]}%")
+      sql_query = " \
+        rooms.title @@ :query \
+        OR rooms.description @@ :query \
+        OR rooms.address @@ :query \
+      "
+      @rooms = policy_scope(Room).where(sql_query, query: "%#{params[:keyword]}%")
     else
       @rooms = policy_scope(Room)
     end
     @markers = @rooms.geocoded.map do |room|
-       {
+      {
         lat: room.latitude,
         lng: room.longitude,
         info_window: render_to_string(partial: "info_window", locals: { room: room }),
-        image_url: helpers.asset_url('https://icon-library.com/images/hotel-icon-map/hotel-icon-map-18.jpg')
+        image_url: helpers.asset_url('https://cdn4.iconfinder.com/data/icons/map-pins-2/256/15-512.png')
       }
     end
   end
@@ -21,7 +25,6 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @match = Match.new
-    @match = Match.new(room: @room_id)
     authorize @room
   end
 
@@ -50,7 +53,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     authorize @room
     if @room.update(room_params)
-      redirect_to room_path, notice: 'room was successfully updated.'
+      redirect_to room_path(@room), notice: 'room was successfully updated.'
     else
       render :edit
     end
