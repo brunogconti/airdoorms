@@ -25,13 +25,15 @@
   <div class="row">
     <div class="col-12">
       <% if @keyword %>
-        <p>You searched for <strong><%= @keyword %></strong>. We found <%= @rooms.count %> rooms out of our <%= @rooms.count %> on our website.</p>
+        <p>You searched for <strong><%= @keyword %></strong>. We found <%= @rooms.count %> rooms out of our <%= Room.where(available: true).count %> on our website.</p>
       <% else %>
-        <p>All <%= Room.count %> rooms.</p>
+        <p>All <%= Room.where(available: true).count %> rooms.</p>
       <% end %>
     </div>
   </div>
+</div>
 
+<div class="container-fluid container py-3 mt-4">
   <div class="row">
     <div class="col-sm-12 col-lg-8  d-flex flex-wrap">
       <% @rooms.each do |room| %>
@@ -73,6 +75,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
+  </div>
 </div>
 
 <%# d-none d-lg-block d-xl-none %>
