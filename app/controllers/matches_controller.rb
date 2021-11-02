@@ -12,6 +12,7 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+    @match.user = current_user
     authorize @match
   end
 
