@@ -6,10 +6,13 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+    @match.user = current_user
     authorize @match
   end
 
   def create
+    @room = Room.find(params[:match][:room_id])
+    @room.update(available: false)
     @match = Match.new(match_params)
     @match.user = current_user
     authorize @match

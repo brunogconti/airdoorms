@@ -25,19 +25,29 @@
   <div class="row">
     <div class="col-12">
       <% if @keyword %>
-        <p>You searched for <strong><%= @keyword %></strong>. We found <%= @rooms.count %> rooms out of our <%= @rooms.count %> on our website.</p>
+        <p>You searched for <strong><%= @keyword %></strong>. We found <%= @rooms.count %> rooms out of our <%= Room.where(available: true).count %> on our website.</p>
       <% else %>
-        <p>All <%= Room.count %> rooms.</p>
+        <p>All <%= Room.where(available: true).count %> rooms.</p>
       <% end %>
     </div>
   </div>
+</div>
 
+<div class="container-fluid container py-3 mt-4">
   <div class="row">
     <div class="col-sm-12 col-lg-8  d-flex flex-wrap">
       <% @rooms.each do |room| %>
         <div class="col-12 col-lg-4">
           <div class="room-card">
-            <div class="room-card-image" style="background-image: url('https://media.istockphoto.com/vectors/double-bed-vector-icon-on-white-vector-id1217991261?k=6&m=1217991261&s=170667a&w=0&h=SyZhVF32SBJGnri7yma3Jy0hhsSU6lmGF2xuKfNi8V4=')"></div>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <% room.photos.each do |photo| %>
+                <div class="carousel-item active">
+                  <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
+                </div>
+                <% end %>
+              </div>
+            </div>
             <div class="room-card-content">
               <div class="room-card-title">
                 <h4><%= room.title %></h4>
@@ -73,6 +83,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
+  </div>
 </div>
 
 <%# d-none d-lg-block d-xl-none %>

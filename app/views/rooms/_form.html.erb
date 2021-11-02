@@ -2,6 +2,7 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :address %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.input :room_type, as: :select, collection: %w[shared exclusive], prompt: 'Select Room Type', label: "Room Type" %>
     <%= f.input :value %>
     <%= f.submit class: 'btn btn-primary' %>
