@@ -1,10 +1,11 @@
 class MatchPolicy < ApplicationPolicy
   def index?
-    owner?
+    true
   end
 
   def show?
     owner? 
+    true
   end
 
   def create?
