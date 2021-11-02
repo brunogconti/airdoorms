@@ -4,6 +4,7 @@ class MatchPolicy < ApplicationPolicy
   end
 
   def show?
+    owner? 
     true
   end
 
