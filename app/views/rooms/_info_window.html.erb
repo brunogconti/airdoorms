@@ -1,4 +1,19 @@
-<div class="container">
-  <h2><%= room.title %></h2>
-  <p><%= room.address %></p>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% room.photos.each_with_index do |photo, index| %>
+      <div class="carousel-item<%=" active" if index == 0%>">
+        <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="room-card-content">
+  <div class="room-card-title">
+    <h4><%= room.title %></h4>
+    <p><%= room.address %></p>
+  </div>
+  <div class="flex-align ">
+    <span><%= room.room_type %></span>
+    R$<%= room.value %>
+  </div>
 </div>
