@@ -3,16 +3,23 @@
 </div>
 <br>
 <div class="container">
-  <div class="list-group">
-    <% @matches.each do |match|%>
-    <div class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">Requisição <%= match.id %></h5>
-        <small><%= match.created_at %></small>
-      </div>
-      <p class="mb-1"><%= match.user.name %> deseja entrar na república <%= match.room.title %> e quer ficar no período  de (<%= match.start_date %>) até (<%= match.end_date %>)!</p>
-      <small><%= link_to 'Detalhes', match_path(match) %></small>
+<div class="list-group">
+  <% @matches.each do |match|%>
+  <div class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Requisição <%= match.id %></h5>
     </div>
-    <% end %>
+
+      <div class="card, cardMatch" style="width: 18rem;">
+        <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
+        <h2 class="logo">airdoorms</h2>
+        <div class="cardMatch-body">
+          <h1 class="cardMatch"><strong>Is it a Match?</strong></h1>
+          <p class="card-text"><%= match.user.name.capitalize %> deseja entrar na república <%= match.room.title %> e quer ficar no período  de (<%= match.start_date %>) até (<%= match.end_date %>)!</p>
+          <%= link_to 'Detalhes' , match, class: "btn btn-primary" %>
+          <small><%= match.created_at %></small>
+        </div>
+      </div>
+      <% end %>
   </div>
 </div>
