@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_112621) do
     t.bigint "user_id", null: false
     t.float "latitude"
     t.float "longitude"
-    t.boolean "available", default: false
+    t.boolean "available", default: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
