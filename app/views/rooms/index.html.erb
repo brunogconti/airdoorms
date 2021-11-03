@@ -43,7 +43,7 @@
               <div class="carousel-inner">
                 <% room.photos.each_with_index do |photo, index| %>
                   <div class="carousel-item<%=" active" if index == 0%>">
-                    <%= cl_image_tag photo.key, class: "d-block w-100", crop: fill %>
+                    <%= cl_image_tag photo.key, class: "d-block w-100", width: 400, height: 300, crop: :lfill %>
                   </div>
                 <% end %>
               </div>
