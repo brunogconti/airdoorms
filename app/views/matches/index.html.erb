@@ -5,21 +5,23 @@
 <div class="container">
 <div class="list-group">
   <% @matches.each do |match|%>
-  <div class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Requisição <%= match.id %></h5>
-    </div>
+  <%# <div class="list-group-item list-group-item-action"> %>
+    <div class="d-flex flex-row  justify-content-around">
+      <%# <h5 class="mb-1">Requisição = match.id</h5> %>
+    <%# </div> %>
 
-      <div class="card, cardMatch" style="width: 18rem;">
+      <div class="cardMatch" style="width: 300px">
         <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
-        <h2 class="logo">airdoorms</h2>
+        <h2 class="logo">airdorms</h2>
         <div class="cardMatch-body">
-          <h1 class="cardMatch"><strong>Is it a Match?</strong></h1>
-          <p class="card-text"><%= match.user.name.capitalize %> deseja entrar na república <%= match.room.title %> e quer ficar no período  de (<%= match.start_date %>) até (<%= match.end_date %>)!</p>
+          <h1 class="cardMatch-title"><strong>Is it a Match?</strong></h1>
+          <p><%= match.user.name.capitalize %> reservou <%= match.room.title %> no período  de (<%= match.start_date %>) até (<%= match.end_date %>) os proprietários entraram em contato em breve!</p>
           <%= link_to 'Detalhes' , match, class: "btn btn-primary" %>
           <small><%= match.created_at %></small>
         </div>
+      <%# </div> %>
       </div>
+      <br>
       <% end %>
   </div>
 </div>
