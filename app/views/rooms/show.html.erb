@@ -1,63 +1,36 @@
 <div class='container'>
-  <h1><strong><%= @room.title %></strong></h1>
-  <h3><%= @room.description %></h3>
-  <h3><%= @room.value.round(2) %></h3>
-  <p><%= @room.address %></p>
-
-  <p><%= @room.room_type %></p>
-<br>
-  <% @room.photos.each do |photo| %>
-    <div class="carousel-item active">
-      <%= cl_image_tag photo.key, class: "d-block w-100" , crop: :fill %>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @room.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item<%=" active" if index == 0%>">
+            <%= cl_image_tag photo.key, class: "d-block w-100" %>
+          </div>
         <% end %>
     </div>
-<br>
-  <%= link_to 'Edit', edit_room_url(@room) %>
-  <%= link_to 'Back', rooms_path %>
-  <%= link_to 'delete' , room_path(@room), method: :delete , data: { confirm: 'Você tem certeza que quer deletar?' } %>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-  <% if current_user != @room.user %>
-    <div class='card'>
-      <h2>Deseja se juntar a nossa república?</h2>
-      <%= simple_form_for @match do |f| %>
-        <%= f.input :start_date, as: :date, html5: true %>
-        <%= f.input :end_date, as: :date, html5: true %>
-        <%= f.submit class: 'btn btn-primary' %>
-        <%= f.hidden_field :room_id, :value=> params[:id] %>
-      <% end %>
-      <%= link_to 'Minhas Solicitações', matches_path %>
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <h1><strong><%= @room.title %></strong></h1>
+  <h3 class="m-2"><small><%= @room.address %></small></h3>
+  <h6 class="m-2">Tipo de quarto: <%= @room.room_type %></h6>
+  <h6 class="m-3"><%= @room.description %></h6>
+  <h5 class="m-2">R$<%= @room.value.round(2) %> por mês</h5>
+
+  <% if current_user != @room.user && user_signed_in?%>
+    <h4 class="mt-5">Deseja se juntar a nossa república?</h4>
+    <%= simple_form_for @match do |f| %>
+      <%= f.hidden_field :room_id, :value=> params[:id] %>
+      <%= f.input :start_date, as: :date, html5: true %>
+      <%= f.input :end_date, as: :date, html5: true %>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
+
 </div>
