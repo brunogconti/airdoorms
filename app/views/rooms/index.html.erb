@@ -39,11 +39,11 @@
       <% @rooms.each do |room| %>
         <div class="col-12 col-lg-4">
           <div class="room-card">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
                 <% room.photos.each_with_index do |photo, index| %>
                   <div class="carousel-item<%=" active" if index == 0%>">
-                    <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
+                    <%= cl_image_tag photo.key, class: "d-block w-100" %>
                   </div>
                 <% end %>
               </div>
