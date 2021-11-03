@@ -1,3 +1,8 @@
+<div class="card2-category"
+  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1542647113-a82e85233630?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2662&q=80)">
+  SUCESSO!
+</div>
+<br>
 <div class="container">
   <div class="span5">
     <% @room = Room.find(@match.room_id) %>
@@ -20,8 +25,13 @@
       <b>Data de Saída:</b>
       <%=h @match.end_date %>
     </p>
+  <div>
+    <% @room.photos.each do |photo| %>
+      <div class="carousel-item active">
+        <%= cl_image_tag photo.key, class: "d-block w-100" , crop: :fill %>
+          <% end %>
+      </div>
+  </div>
 
     <% if @match.user_id == current_user.id or @match.user_id == current_user.id %>
     <% end %>
-  </div>
-</div>

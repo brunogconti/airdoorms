@@ -6,23 +6,48 @@
 
   <p><%= @room.room_type %></p>
 <br>
-                <% @room.photos.each do |photo| %>
-                  <div class="carousel-item active">
-                    <%= cl_image_tag photo.key, class: "d-block w-100" , crop: :fill %>
-                      <% end %>
-                  </div>
-
-
-
+  <% @room.photos.each do |photo| %>
+    <div class="carousel-item active">
+      <%= cl_image_tag photo.key, class: "d-block w-100" , crop: :fill %>
+        <% end %>
+    </div>
 <br>
-
-
   <%= link_to 'Edit', edit_room_url(@room) %>
   <%= link_to 'Back', rooms_path %>
   <%= link_to 'delete' , room_path(@room), method: :delete , data: { confirm: 'Você tem certeza que quer deletar?' } %>
-  <br>
-  <br>
-  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
   <% if current_user != @room.user %>
     <div class='card'>
       <h2>Deseja se juntar a nossa república?</h2>
