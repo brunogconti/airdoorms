@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  has_many :matches
+  has_many :matches, dependent: :destroy
   belongs_to :user
   has_many_attached :photos
 
