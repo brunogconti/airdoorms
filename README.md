@@ -28,7 +28,7 @@ O Airdorms é uma aplicação que conecta estudantes universitários à vagas em
 
 ## 🔖 Link
 
-No link abaixo você encontra o orotótipo do projeto web no Heroku.
+No link abaixo você encontra o protótipo do projeto web no Heroku.
 
 - [Airdorms](https://airdorms.herokuapp.com/)
 
